@@ -13,7 +13,7 @@ public class DisplayManager {
 	private static final String TITLE = "LWJGL Window";
 	private static final int FPS = 120;
 	
-	public void createDisplay() {
+	public static void createDisplay() {
 		ContextAttribs attribs = new ContextAttribs(3,2);
 		attribs.withForwardCompatible(true);
 		attribs.withProfileCore(true);
@@ -29,12 +29,12 @@ public class DisplayManager {
 		}
 	}
 	
-	public void updateDisplay() {
+	public static void updateDisplay() {
 		Display.sync(FPS);
 		Display.update();
 	}
 	
-	public void closeDisplay() {
+	public static void closeDisplay() {
 		Display.destroy();
 		System.out.println("Exited application");
 		System.exit(0);
