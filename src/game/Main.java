@@ -9,6 +9,8 @@ import models.RawModel;
 import util.Loader;
 
 public class Main {
+	private static int PLAYER_ID = (int) (Math.random() * 1000);
+	
 	public static void main(String[] args) {
 		DisplayManager.createDisplay();
 		
@@ -26,7 +28,8 @@ public class Main {
 		
 		RawModel model = loader.loadToVAO(vertices);
 		
-		System.out.println("LWJGL Version " + Sys.getVersion());
+		System.out.println("LWJGL Version: " + Sys.getVersion());
+		System.out.println("Setting player: " + PLAYER_ID);
 		
 		while(!Display.isCloseRequested()) {
 			renderer.prepare();
