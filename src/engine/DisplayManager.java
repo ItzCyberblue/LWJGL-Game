@@ -20,7 +20,7 @@ public class DisplayManager {
 		
 		try {
 			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
-			Display.create(new PixelFormat());
+			Display.create(new PixelFormat(), attribs);
 			Display.setTitle(TITLE);
 			GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
 		} catch (LWJGLException e) {
