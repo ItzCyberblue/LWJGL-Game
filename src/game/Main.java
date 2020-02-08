@@ -6,7 +6,9 @@ import org.lwjgl.opengl.Display;
 import engine.DisplayManager;
 import engine.Renderer;
 import models.RawModel;
+import models.TexturedModel;
 import shaders.StaticShader;
+import textures.ModelTexture;
 import util.Loader;
 
 public class Main {
@@ -31,7 +33,16 @@ public class Main {
 				3,1,2
 		};
 		
-		RawModel model = loader.loadToVAO(vertices, indices);
+		float[] textureCoords = {
+				0,0,
+				0,1,
+				1,1,
+				1,0
+		};
+		
+		RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
+		ModelTexture texture = new ModelTexture(loader.loadTexture("dev_texture"));
+		TexturedModel texModel = new TexturedModel(model, texture);
 		
 		System.out.println("LWJGL Version: " + Sys.getVersion());
 		System.out.println("Setting player: " + PLAYER_ID);
@@ -39,7 +50,7 @@ public class Main {
 		while(!Display.isCloseRequested()) {
 			renderer.prepare();
 			shader.start();
-			renderer.render(model);
+			renderer.render(texModel);
 			shader.stop();
 			DisplayManager.updateDisplay();
 		}
