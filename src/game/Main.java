@@ -6,6 +6,7 @@ import org.lwjgl.opengl.Display;
 import engine.DisplayManager;
 import engine.Renderer;
 import models.RawModel;
+import shaders.StaticShader;
 import util.Loader;
 
 public class Main {
@@ -16,6 +17,7 @@ public class Main {
 		
 		Loader loader = new Loader();
 		Renderer renderer = new Renderer();
+		StaticShader shader = new StaticShader();
 		
 		float[] vertices = {
 				-0.5f, 0.5f, 0f,
@@ -36,10 +38,13 @@ public class Main {
 		
 		while(!Display.isCloseRequested()) {
 			renderer.prepare();
+			shader.start();
 			renderer.render(model);
-			
+			shader.stop();
 			DisplayManager.updateDisplay();
 		}
+		shader.clearAll();
+		loader.clearAll();
 		DisplayManager.closeDisplay();
 	}
 }
