@@ -26,6 +26,7 @@ public class DisplayManager {
 		} catch (LWJGLException e) {
 			System.err.println("Failed to create window!");
 			e.printStackTrace();
+			System.exit(-1);
 		}
 	}
 	
